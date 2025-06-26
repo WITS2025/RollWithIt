@@ -97,7 +97,25 @@ return (
                 Add
             </button>
         </div>
+        {/* Save and Return Button */}
+        <div className="mt-4">
+            <button
+                className="btn btn-outline-primary"
+                onClick={() => {
+                    navigate('/', {
+                    state: {
+                        updatedList: {
+                        ...passedList,
+                        items,
+                        },
+                    },
+                });
+            }}
+        >
+            Save and Return Home
+        </button>
     </div>
+</div>
 );
 }
 

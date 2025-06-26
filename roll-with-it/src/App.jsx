@@ -13,7 +13,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/list/:id" element={<List />} />
-
       </Routes>
     </div>
   );
