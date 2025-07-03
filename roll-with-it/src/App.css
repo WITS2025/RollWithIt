@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+/*list title input box*/
+.custom-title-input {
+  padding: 1rem 1.25rem; /* bigger padding */
+  border-radius: 0.5rem; /* slightly more rounded */
+  transition: box-shadow 0.2s ease;
+}
+
+.custom-title-input:focus {
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.5); /* thicker blue glow */
+  border-color: #0d6efd;
+}
