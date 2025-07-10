@@ -1,10 +1,10 @@
 version = 0.1
 
 [default.deploy.parameters]
-stack_name = "sam-app"
+stack_name = "roll-with-it"
 resolve_s3 = false                  # does not create new bucket
 s3_bucket = "wits-sam-deployments"
-s3_prefix = "sam-app"
+s3_prefix = "roll-with-it"
 region = "us-east-1"
 confirm_changeset = true            # asks for permission once shows you what's going to change
 capabilities = "CAPABILITY_IAM"     # has ability to manipulate permissions (policies)

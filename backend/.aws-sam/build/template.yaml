@@ -1,62 +1,27 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: SAM Template for React frontend + API + DynamoDB + 6 Lambdas
-Globals:
-  Function:
-    Timeout: 10
-    Runtime: nodejs18.x
-    MemorySize: 256
 Resources:
-  roll_with_it:
-    Type: AWS::DynamoDB::Table
+  RollWithIt:
+    Type: AWS::Serverless::HttpApi
     Properties:
-      TableName: roll_with_it
-      AttributeDefinitions:
-      - AttributeName: pk
-        AttributeType: S
-      KeySchema:
-      - AttributeName: pk
-        KeyType: HASH
-      BillingMode: PAY_PER_REQUEST
-  ReactAppBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: wits-sam-deployments
-      WebsiteConfiguration:
-        IndexDocument: index.html
-        ErrorDocument: index.html
-  ReactAppBucketPolicy:
-    Type: AWS::S3::BucketPolicy
-    Properties:
-      Bucket:
-        Ref: ReactAppBucket
-      PolicyDocument:
-        Statement:
-        - Sid: PublicReadGetObject
-          Effect: Allow
-          Principal: '*'
-          Action: s3:GetObject
-          Resource:
-            Fn::Sub: ${ReactAppBucket.Arn}/*
-  MyApi:
-    Type: AWS::Serverless::Api
-    Properties:
-      StageName: $default
+      Name: RollWithIt
   createPackingList:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: createPackingList
       Handler: index.handler
+      Runtime: nodejs22.x
       Policies:
       - DynamoDBCrudPolicy:
           TableName: roll_with_it
       CodeUri: createPackingList
       Events:
         ApiEvent:
-          Type: Api
+          Type: HttpApi
           Properties:
-            RestApiId:
-              Ref: MyApi
+            ApiId:
+              Ref: RollWithIt
             Path: /createPackingList
             Method: post
     Metadata:
@@ -66,16 +31,17 @@ Resources:
     Properties:
       FunctionName: addToPackingList
       Handler: index.handler
+      Runtime: nodejs22.x
       CodeUri: addToPackingList
       Policies:
       - DynamoDBCrudPolicy:
           TableName: roll_with_it
       Events:
         ApiEvent:
-          Type: Api
+          Type: HttpApi
           Properties:
-            RestApiId:
-              Ref: MyApi
+            ApiId:
+              Ref: RollWithIt
             Path: /addToPackingList
             Method: post
     Metadata:
@@ -85,16 +51,17 @@ Resources:
     Properties:
       FunctionName: getAllPackingLists
       Handler: index.handler
+      Runtime: nodejs22.x
       CodeUri: getAllPackingLists
       Policies:
       - DynamoDBCrudPolicy:
           TableName: roll_with_it
       Events:
         ApiEvent:
-          Type: Api
+          Type: HttpApi
           Properties:
-            RestApiId:
-              Ref: MyApi
+            ApiId:
+              Ref: RollWithIt
             Path: /getAllPackingLists
             Method: get
     Metadata:
@@ -104,16 +71,17 @@ Resources:
     Properties:
       FunctionName: getPackingList
       Handler: index.handler
+      Runtime: nodejs22.x
       CodeUri: getPackingList
       Policies:
       - DynamoDBCrudPolicy:
           TableName: roll_with_it
       Events:
         ApiEvent:
-          Type: Api
+          Type: HttpApi
           Properties:
-            RestApiId:
-              Ref: MyApi
+            ApiId:
+              Ref: RollWithIt
             Path: /getPackingList
             Method: get
     Metadata:
@@ -123,18 +91,19 @@ Resources:
     Properties:
       FunctionName: updatePackingList
       Handler: index.handler
+      Runtime: nodejs22.x
       CodeUri: updatePackingList
       Policies:
       - DynamoDBCrudPolicy:
           TableName: roll_with_it
       Events:
         ApiEvent:
-          Type: Api
+          Type: HttpApi
           Properties:
-            RestApiId:
-              Ref: MyApi
             Path: /updatePackingList
             Method: post
+            ApiId:
+              Ref: RollWithIt
     Metadata:
       SamResourceId: updatePackingList
   updatePackingListItem:
@@ -142,25 +111,22 @@ Resources:
     Properties:
       FunctionName: updatePackingListItem
       Handler: index.handler
+      Runtime: nodejs22.x
       CodeUri: updatePackingListItem
       Policies:
       - DynamoDBCrudPolicy:
           TableName: roll_with_it
       Events:
         ApiEvent:
-          Type: Api
+          Type: HttpApi
           Properties:
-            RestApiId:
-              Ref: MyApi
+            ApiId:
+              Ref: RollWithIt
             Path: /updatePackingListItem
             Method: post
     Metadata:
       SamResourceId: updatePackingListItem
 Outputs:
-  ReactAppBucketName:
-    Description: S3 Bucket hosting React frontend
-    Value:
-      Ref: ReactAppBucket
   ApiUrl:
     Description: HTTP API endpoint base URL
     Value:
