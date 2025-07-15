@@ -19,13 +19,13 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: roll_with_it
-      CodeUri: ./src/createPackingList
+      CodeUri: ./src/createPackingList/
       Events:
         ApiEvent:
           Type: HttpApi
           Properties:
             ApiId: !Ref RollWithIt
-            Path: /createPackingList
+            Path: /src/createPackingList
             Method: post
 
   addToPackingList:
@@ -34,7 +34,7 @@ Resources:
       FunctionName: addToPackingList
       Handler: index.handler
       Runtime: nodejs22.x
-      CodeUri: ./src/addToPackingList
+      CodeUri: ./src/addToPackingList/
       Policies:
         - DynamoDBCrudPolicy:
             TableName: roll_with_it
@@ -43,7 +43,7 @@ Resources:
           Type: HttpApi
           Properties:
             ApiId: !Ref RollWithIt
-            Path: /addToPackingList
+            Path: /src/addToPackingList
             Method: post
 
   getAllPackingLists:
@@ -52,7 +52,7 @@ Resources:
       FunctionName: getAllPackingLists
       Handler: index.handler
       Runtime: nodejs22.x
-      CodeUri: ./src/getAllPackingLists
+      CodeUri: ./src/getAllPackingLists/
       Policies:
         - DynamoDBCrudPolicy:
             TableName: roll_with_it
@@ -61,7 +61,7 @@ Resources:
           Type: HttpApi
           Properties:
             ApiId: !Ref RollWithIt
-            Path: /getAllPackingLists
+            Path: /src/getAllPackingLists
             Method: get
 
   getPackingList:
@@ -70,7 +70,7 @@ Resources:
       FunctionName: getPackingList
       Handler: index.handler
       Runtime: nodejs22.x
-      CodeUri: ./src/getPackingList
+      CodeUri: ./src/getPackingList/
       Policies:
         - DynamoDBCrudPolicy:
             TableName: roll_with_it
@@ -79,7 +79,7 @@ Resources:
           Type: HttpApi
           Properties:
             ApiId: !Ref RollWithIt
-            Path: /getPackingList
+            Path: /src/getPackingList
             Method: get
 
   updatePackingList:
@@ -88,7 +88,7 @@ Resources:
       FunctionName: updatePackingList
       Handler: index.handler
       Runtime: nodejs22.x
-      CodeUri: ./src/updatePackingList
+      CodeUri: ./src/updatePackingList/
       Policies:
         - DynamoDBCrudPolicy:
             TableName: roll_with_it
@@ -96,7 +96,7 @@ Resources:
         ApiEvent:
           Type: HttpApi
           Properties:
-            Path: /updatePackingList
+            Path: /src/updatePackingList
             Method: post
             ApiId: !Ref RollWithIt
 
@@ -106,7 +106,7 @@ Resources:
       FunctionName: updatePackingListItem
       Handler: index.handler
       Runtime: nodejs22.x
-      CodeUri: ./src/updatePackingListItem
+      CodeUri: ./src/updatePackingListItem/
       Policies:
         - DynamoDBCrudPolicy:
             TableName: roll_with_it

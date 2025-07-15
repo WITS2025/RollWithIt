@@ -28,7 +28,10 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+<<<<<<< Updated upstream
     "jest-fetch-mock": "^3.0.3",
+=======
+>>>>>>> Stashed changes
     "jsdom": "^26.1.0",
     "vite": "^6.3.5",
     "vitest": "^3.2.4"
