@@ -2,8 +2,7 @@ version = 0.1
 
 [default.deploy.parameters]
 stack_name = "roll-with-it"
-resolve_s3 = false                  # does not create new bucket
-s3_bucket = "wits-sam-deployments"
+resolve_s3 = true
 s3_prefix = "roll-with-it"
 region = "us-east-1"
 confirm_changeset = true            # asks for permission once shows you what's going to change
