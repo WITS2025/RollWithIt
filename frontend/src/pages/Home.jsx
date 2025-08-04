@@ -64,7 +64,7 @@ function Home() {
     };
   
     try {
-      const res = await fetch(`${BASE_API_URL}/createPackingList`, {
+      const res = await fetch(`https://tx155az65e.execute-api.us-east-1.amazonaws.com/default/createPackingList`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
