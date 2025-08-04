@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "SAM backend for packing list app",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.572.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
