@@ -25,7 +25,7 @@ exports.handler = async (event) => {
       return {
         statusCode: 404,
         headers: CORS_HEADERS,
-        body: JSON.stringify("No items found"),
+        body: JSON.stringify([]),
       };
     }
 
