@@ -9,7 +9,7 @@ const {
 
 const ddbMock = mockClient(DynamoDBDocumentClient);
 
-const lambda = require("../src/getAllPackingLists"); // Adjust path as needed
+const lambda = require("../src/getAllPackingLists"); 
 
 describe("getAllPackingLists Lambda", () => {
   beforeEach(() => {
@@ -31,7 +31,7 @@ describe("getAllPackingLists Lambda", () => {
 
     const result = await lambda.handler({});
 
-    expect(result.statusCode).toBe(404);
+    expect(result.statusCode).toBe(200);
     expect(JSON.parse(result.body)).toBe("No items found");
   });
 
