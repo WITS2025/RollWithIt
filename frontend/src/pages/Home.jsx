@@ -10,7 +10,7 @@ function Home() {
   const [addingNew, setAddingNew] = useState(false);
   const [newName, setNewName] = useState('');
 
-  const BASE_API_URL = 'https://h2fqo38sa8.execute-api.us-east-1.amazonaws.com';
+  const BASE_API_URL = import.meta.env.VITE_API_BASE_URL || 'https://h2fqo38sa8.execute-api.us-east-1.amazonaws.com';
 
   useEffect(() => {
     const fetchLists = async () => {
@@ -79,39 +79,69 @@ function Home() {
   };  
 
   return (
-    <div className="container-fluid vh-100 py-5 bg-light">
-      <h2 className="text-center" style={{ fontWeight: '700', letterSpacing: '0.15em', color: '#212529', borderBottom: '3px solid #6c757d', display: 'inline-block', paddingBottom: '0.25rem', marginBottom: '2rem' }}>
+    <div className="container-fluid py-5" style={{ backgroundColor: 'var(--bs-body-bg)', color: 'var(--bs-body-color)' }}>
+
+      <h2
+        className="text-center"
+        style={{
+          fontWeight: '700',
+          letterSpacing: '0.15em',
+          color: 'var(--bs-primary)',
+          borderBottom: '3px solid var(--bs-primary)',
+          display: 'inline-block',
+          paddingBottom: '0.25rem',
+          marginBottom: '2rem'
+        }}
+      >
         Your Packing Lists
       </h2>
-
+  
       <div className="row gx-4 gy-4 px-4">
         {lists.map((list) => (
           <Link
             key={list.pk}
             to={`/list/${list.pk}`}
             state={{ list }}
-            className="col-6 col-md-3 text-decoration-none text-dark"
+            className="col-6 col-md-3 text-decoration-none"
+            style={{ color: 'var(--bs-body-color)' }}
           >
-            <div className="card h-100 bg-white text-dark rounded border d-flex align-items-center justify-content-center p-3 list-card" style={{ aspectRatio: '4 / 3', cursor: 'pointer', transition: 'transform 0.2s ease, box-shadow 0.2s ease' }} aria-label={list.title}>
-              <small className="text-center text-truncate w-100 mb-0 fw-semibold" style={{ letterSpacing: '0.05em', fontSize: '1rem' }}>
+            <div
+              className="card h-100 rounded border d-flex align-items-center justify-content-center p-3 list-card"
+              style={{
+                aspectRatio: '4 / 3',
+                color: 'var(--bs-body-color)',
+                cursor: 'pointer',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+              }}
+              aria-label={list.title}
+            >
+              <small
+                className="text-center text-truncate w-100 mb-0 fw-semibold"
+                style={{ letterSpacing: '0.05em', fontSize: '1rem', color: 'var(--bs-body-color)' }}
+              >
                 {list.title}
               </small>
             </div>
           </Link>
         ))}
-
+  
         <style>{`
           .list-card:hover {
             box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
             transform: translateY(-4px);
-            cursor: pointer;
           }
         `}</style>
-
+  
         {/* Add new list UI */}
         <div className="col-6 col-md-3 d-flex align-items-center justify-content-center">
           {addingNew ? (
-            <div className="card h-100 w-100 p-3 d-flex flex-column align-items-center justify-content-center">
+            <div
+              className="card h-100 w-100 p-3 d-flex flex-column align-items-center justify-content-center"
+              style={{
+                backgroundColor: 'white',
+                color: 'var(--bs-body-color)',
+              }}
+            >
               <input
                 type="text"
                 className="form-control mb-2"
@@ -125,16 +155,43 @@ function Home() {
                 }}
               />
               <div>
-                <button className="btn btn-primary btn-sm me-2" onClick={handleAdd}>
+                <button
+                  className="btn btn-sm me-2"
+                  style={{
+                    backgroundColor: 'transparent',
+                    color: 'var(--bs-primary)',
+                    borderColor: 'var(--bs-primary)'
+                  }}
+                  onClick={handleAdd}
+                >
                   Add
                 </button>
-                <button className="btn btn-secondary btn-sm" onClick={() => setAddingNew(false)}>
+                <button
+                  className="btn btn-sm"
+                  style={{
+                    backgroundColor: 'var(--bs-primary)',
+                    color: '#fff',
+                    border: 'none'
+                  }}
+                  onClick={() => setAddingNew(false)}
+                >
                   Cancel
                 </button>
               </div>
             </div>
           ) : (
-            <button className="btn btn-outline-secondary w-100 h-100 d-flex flex-column align-items-center justify-content-center" style={{ aspectRatio: '4 / 3', fontSize: '2rem' }} onClick={() => setAddingNew(true)} aria-label="Add new list">
+            <button
+              className="w-100 h-100 d-flex flex-column align-items-center justify-content-center border"
+              style={{
+                aspectRatio: '4 / 3',
+                fontSize: '2rem',
+                backgroundColor: '#ffffff55',
+                color: 'var(--bs-primary))',
+                borderColor: 'var(--bs-primary))'
+              }}
+              onClick={() => setAddingNew(true)}
+              aria-label="Add new list"
+            >
               +
               <span style={{ fontSize: '1rem', fontWeight: 500 }}>Add New</span>
             </button>

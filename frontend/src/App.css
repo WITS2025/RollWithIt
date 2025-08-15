@@ -1,3 +1,6 @@
+/* Fonts for theme customization */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Quicksand:wght@400;600&family=Space+Grotesk&family=EB+Garamond&family=Pacifico&display=swap');
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -37,6 +40,17 @@
   padding: 2em;
 }
 
+.card, .list-group-item, .packing-list-title, .form-check-input {
+  background-color: white;
+}
+
+[data-bs-theme=dark] .card,
+[data-bs-theme=dark] .packing-list-title,
+[data-bs-theme=dark] .form-check-input,
+[data-bs-theme=dark] .list-group-item {
+  background-color: #ffffff55;
+}
+
 .read-the-docs {
   color: #888;
 }
@@ -51,4 +65,26 @@
 .custom-title-input:focus {
   box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.5); /* thicker blue glow */
   border-color: #0d6efd;
+}
+
+/* Fix the button to use the theme color */
+.btn-outline-primary {
+  color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active,
+.btn-outline-primary.active {
+  color: var(--bs-btn-hover-color, #fff) !important;
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+  /* box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.5); */
+  box-shadow: none;
+}
+
+.form-check-input:checked {
+  background-color: var(--bs-primary);
+  color: var(--bs-body-color)
 }

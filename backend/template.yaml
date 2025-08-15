@@ -118,6 +118,42 @@ Resources:
             Path: /updatePackingListItem
             Method: post
 
+  getTheme:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getTheme
+      Handler: index.handler
+      Runtime: nodejs22.x
+      CodeUri: ./src/getTheme
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: roll_with_it
+      Events:
+        ApiEvent:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref RollWithIt
+            Path: /getTheme
+            Method: get
+
+  createTheme:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: createTheme
+      Handler: index.handler
+      Runtime: nodejs22.x
+      CodeUri: ./src/createTheme
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: roll_with_it
+      Events:
+        ApiEvent:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref RollWithIt
+            Path: /createTheme
+            Method: post
+
 Outputs:
   ApiUrl:
     Description: "HTTP API endpoint base URL"
