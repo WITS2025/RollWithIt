@@ -3,13 +3,22 @@ Transform: AWS::Serverless-2016-10-31
 Description: SAM Template for React frontend + API + DynamoDB + 6 Lambdas
 
 Resources:
-  # API Gateway Rest API (SAM will auto-create it)
+  # API Gateway Rest API with CORS enabled for frontend
   RollWithIt: 
     Type: AWS::Serverless::HttpApi
     Properties:
       Name: RollWithIt
+      CorsConfiguration:
+        AllowOrigins:
+          - "https://main.d29lxf83hjb6ut.amplifyapp.com"
+        AllowHeaders:
+          - "*"
+        AllowMethods:
+          - GET
+          - POST
+          - OPTIONS
 
-  # Lambda functions (6 total)
+  # Lambda functions
   createPackingList:
     Type: AWS::Serverless::Function
     Properties:
