@@ -21,7 +21,6 @@ exports.handler = async (event) => {
     const data = await ddbDocClient.send(new ScanCommand(params));
     console.log("Scan success:", data);
 
-<<<<<<< HEAD
     if (!data.Items || data.Items.length === 0) {
       return {
         statusCode: 404,
@@ -29,9 +28,7 @@ exports.handler = async (event) => {
         body: JSON.stringify([]),
       };
     }
-=======
     const packingLists = (data.Items || []).filter(item => item.pk !== "theme");
->>>>>>> 877128feeb6cb8e709a55dec2d658530648b7d84
 
     return {
       statusCode: 200,
