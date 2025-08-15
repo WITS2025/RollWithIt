@@ -32,7 +32,7 @@ describe("getAllPackingLists Lambda", () => {
     const result = await lambda.handler({});
 
     expect(result.statusCode).toBe(404);
-    expect(JSON.parse(result.body)).toBe([]);
+    expect(JSON.parse(result.body)).toEqual([]);
   });
 
   it("returns 500 on DynamoDB error", async () => {
